@@ -1,0 +1,88 @@
+# Week 3 Summary – OAuth 2.0 and JWT Practical
+
+## Objective
+
+The goal of this practical was to understand authentication and authorization, build a working OAuth 2.0 authorization server with Node.js, manually perform the OAuth authorization code flow, and learn how JSON Web Tokens (JWTs) work.
+
+## Tasks Completed
+
+### OAuth 2.0 Authorization Server
+
+- Set up a Node.js project using **pnpm**.
+- Installed the required packages:
+  - express
+  - @node-oauth/express-oauth-server
+  - jsonwebtoken
+  - body-parser
+- Created and configured `server.js`.
+- Created and configured `model.js`.
+- Started the authorization server on **http://localhost:3001**.
+
+### OAuth Authorization Code Flow
+
+- Requested an authorization code from `/oauth/authorize`.
+- Received a redirect containing an authorization code.
+- Exchanged the authorization code for an access token using `/oauth/token`.
+- Successfully obtained:
+  - Access Token
+  - Refresh Token
+- Verified that the token was stored in memory by logging the token object in `model.js`.
+
+### JSON Web Token (JWT)
+
+Created the following files:
+
+- `jwt-demo.js` – generated a JWT
+- `jwt-verify.js` – verified a JWT
+- `jwt-forge.js` – demonstrated JWT forgery using a weak secret
+
+Generated a JWT containing:
+
+- User ID
+- Name
+- Role
+- Issued time
+- Expiration time
+
+Verified the token successfully using `jsonwebtoken.verify()`.
+
+Demonstrated that a weak secret (`mysecretkey`) can be used to forge a valid JWT with elevated privileges (`role: superadmin`).
+
+## Key Concepts Learned
+
+### Authentication vs Authorization
+
+- **Authentication** verifies identity.
+- **Authorization** determines permissions.
+
+### OAuth 2.0
+
+- Client
+- Authorization Server
+- Authorization Code
+- Access Token
+- Refresh Token
+- Redirect URI
+- State parameter
+
+### JWT
+
+A JWT consists of:
+
+1. Header
+2. Payload
+3. Signature
+
+The signature protects the token from modification and depends on the secret key.
+
+## Security Lessons
+
+- Authorization codes are short-lived and expire quickly.
+- OAuth token requests must use `application/x-www-form-urlencoded`.
+- JWT payloads are readable by anyone who possesses the token.
+- Weak JWT secrets allow attackers to forge tokens.
+- OWASP recommends long random secrets, secure storage, and key rotation.
+
+## Result
+
+Successfully completed the OAuth 2.0 authorization code flow, generated and verified JWTs, demonstrated JWT forgery with a weak secret, and gained practical experience with authentication, authorization, OAuth, JWT, and OWASP security principles.
